@@ -1,0 +1,17 @@
+PS1='$ '
+
+# Set PS1 color to cyan
+PROMPT_COMMAND='PS1="\[\033[01;96m\]\$ \[\033[00m\]"'
+
+# Check if there are changes in the files and just run it if there aren't any
+run() {
+    local program="$1"
+    shift  # Remove the first argument (program name)
+
+    # Check if the binary exists and if the source is newer than the binary
+    if [[ ! -f "$program" || "$program.cpp" -nt "$program" ]]; then
+        clang++ -o $program -std=c++20 $program.cpp && ./"$program" $@
+    else
+        ./"$program" $@
+    fi
+}
