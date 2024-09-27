@@ -15,7 +15,7 @@ void print(const std::vector<std::string>& list) {
     }
     std::cout << '"' << list.back() << '"';
 
-    std::cout << '}';
+    std::cout << "}\n";
 }
 
 /*
@@ -29,7 +29,7 @@ void printi(const std::vector<std::string>& list) {
     }
     std::cout << "    \"" << list.back() << '"' << '\n';
 
-    std::cout << '}';
+    std::cout << "}\n";
 }
 
 /*
@@ -44,7 +44,7 @@ void print(const std::vector<T>& list) {
     }
     std::cout << list.back();
 
-    std::cout << '}';
+    std::cout << "}\n";
 }
 
 /*
@@ -59,7 +59,7 @@ void printi(const std::vector<T>& list) {
     }
     std::cout << "    " << list.back() << '\n';
 
-    std::cout << '}';
+    std::cout << "}\n";
 }
 
 void print(bool boolean) {
