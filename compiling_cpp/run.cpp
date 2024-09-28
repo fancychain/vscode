@@ -11,7 +11,7 @@ void run(const std::string& program, int argc, char* argv[]) {
     // Check if the binary exists and if the source is newer than the binary
     if (!std::filesystem::exists(binaryFile) || std::filesystem::last_write_time(sourceFile) > std::filesystem::last_write_time(binaryFile)) {
         // Construct the compile command
-        std::string compileCommand = "E:/Files/mingw64/bin/clang++ -o " + binaryFile + " -std=c++20 " + sourceFile;
+        std::string compileCommand = "clang++ -o " + binaryFile + " -std=c++20 " + sourceFile;
 
         // Compile the program
         int compileResult = std::system(compileCommand.c_str());
