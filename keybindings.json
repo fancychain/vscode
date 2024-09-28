@@ -1,0 +1,13 @@
+,
+    {
+        "key": "'",
+        "command": "type",
+        "args": { "text": "\"" },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+'",
+        "command": "type",
+        "args": { "text": "'" },
+        "when": "editorTextFocus"
+    }   
