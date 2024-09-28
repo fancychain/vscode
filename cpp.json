@@ -18,7 +18,7 @@
 	"std::": {
 		"prefix": "std",
 		"body": [
-			"std::"
+			"std::$0"
 		],
 		"description": "std::"
 	},
@@ -26,7 +26,7 @@
 		"prefix": "for-loop",
 		"body": [
 			"for (int ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}++) {",
-			"\t$0",
+			"\t${0:$TM_SELECTED_TEXT}",
 			"}"
 		],
 		"description": "For loop"
@@ -35,7 +35,7 @@
 		"prefix": "for-loop-reversed",
 		"body": [
 			"for (int ${1:i} = ${2:length} - 1; ${1:i} >= 0; ${1:i}--) {",
-			"\t$0",
+			"\t${0:$TM_SELECTED_TEXT}",
 			"}"
 		],
 		"description": "Reversed for loop"
@@ -43,35 +43,28 @@
 	"std::cout": {
 		"prefix": "cout",
 		"body": [
-			"std::cout << $0;"
+			"std::cout << ${0:$TM_SELECTED_TEXT};"
 		],
 		"description": "std::cout"
 	},
 	"std::cout + '\\n'": {
 		"prefix": "cout-nl",
 		"body": [
-			"std::cout << $0 << '\\n';"
+			"std::cout << ${0:$TM_SELECTED_TEXT} << '\\n';"
 		],
 		"description": "std::cout with new line"
 	},
-	// "std::cout string": {
-	// 	"prefix": "cout-str",
-	// 	"body": [
-	// 		"std::cout << \"$0\";"
-	// 	],
-	// 	"description": "std::cout string"
-	// },
 	"std::cout string and new line": {
 		"prefix": "cout-str-nl",
 		"body": [
-			"std::cout << \"$0\" << '\\n';"
+			"std::cout << \"${0:$TM_SELECTED_TEXT}\" << '\\n';"
 		],
 		"description": "std::cout string and new line"
 	},
 	"std::cin": {
 		"prefix": "cin",
 		"body": [
-			"std::cin >> $1;"
+			"std::cin >> ${1:$TM_SELECTED_TEXT};"
 		],
 		"description": "std::cin"
 	},
@@ -86,7 +79,7 @@
 		"prefix": "case",
 		"body": [
 			"case $1:",
-			"\t$0",
+			"\t${0:$TM_SELECTED_TEXT}",
 			"\tbreak;"
 		],
 		"description": "switch case with break"
@@ -95,8 +88,10 @@
 		"prefix": "class",
 		"body": [
 			"class $1 {",
-			"private:$0",
+			"private:",
+			"\t$0",
 			"public:",
+			"\t",
 			"};"
 		],
 		"description": "class"
@@ -104,43 +99,40 @@
 	"main function": {
 		"prefix": "main-function",
 		"body": [
-			"int main() {",
+			"int main(${1:int argc, const char* argv[]}) {",
 			"\t$0\n",
 			"\treturn 0;",
 			"}"
 		],
 		"description": "main function"
 	},
-	"main function with args": {
-		"prefix": "main-function-args",
-		"body": [
-			"int main(int argc, const char* argv[]) {",
-			"\t$0\n",
-			"\treturn 0;",
-			"}"
-		],
-		"description": "main function with command line arguments"
-	},
 	"getline": {
 		"prefix": "getline",
 		"body": [
-			"std::getline(std::cin, $1);"
+			"std::getline(std::cin, ${1:$TM_SELECTED_TEXT});"
 		],
 		"description": "getline function"
 	},
 	"getline without whitespaces": {
 		"prefix": "getline-ws",
 		"body": [
-			"std::getline(std::cin >> std::ws, $1);"
+			"std::getline(std::cin >> std::ws, ${1:$TM_SELECTED_TEXT});"
 		],
 		"description": "getline function without whitespaces at the beginning"
 	},
 	"include a library": {
-		"prefix": "include",
+		"prefix": ["include", "#include"],
 		"body": [
-			"#include <${1:iostream}>"
+			"#include <${1|iostream,vector,algorithm,regex,cmath,fstream,filesystem,cstdlib,cstring|}>"
 		],
 		"description": "include a library"
+	},
+	"include a header": {
+		"prefix": ["include-header", "#include-header"],
+		"body": [
+			"#include \"${1:$TM_SELECTED_TEXT}\""
+		],
+		"description": "include a header"
 	},
 	"string": {
 		"prefix": "string",
@@ -159,8 +151,43 @@
 	"begin and end": {
 		"prefix": "begin-end",
 		"body": [
-			"$1.begin(), $1.end()"
+			"${1:$TM_SELECTED_TEXT}.begin(), ${1:$TM_SELECTED_TEXT}.end()"
 		],
 		"description": ".begin(), .end()"
+	},
+	"string to integer": {
+		"prefix": "stoi",
+		"body": [
+			"std::stoi(${1:$TM_SELECTED_TEXT})"
+		],
+		"description": "string to integer"
+	},
+	"convert number to string": {
+		"prefix": "to_string",
+		"body": [
+			"std::to_string(${1:$TM_SELECTED_TEXT})"
+		],
+		"description": "convert number to string"
+	},
+	"get random number": {
+		"prefix": "random",
+		"body": [
+			"${0:$RANDOM}"
+		],
+		"description": "get 6-digit random number"
+	},
+	"set variable in constructor": {
+		"prefix": "this-constructor",
+		"body": [
+			"this->${1:$CLIPBOARD} = ${1:$CLIPBOARD};"
+		],
+		"description": "set variable in constructor"
 	}
+	// "get today's date": {
+	// 	"prefix": "today",
+	// 	"body": [
+	// 		"${0:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}"
+	// 	],
+	// 	"description": "get today's date"
+	// }
 }
