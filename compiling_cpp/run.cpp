@@ -4,12 +4,22 @@
 #include <string>
 #include <cstring>
 
-void run(const std::string& program, int argc, char* argv[]) {
-    std::string sourceFile = program + ".cpp";
+void run(std::string& program, int argc, char* argv[]) {
+    std::string sourceFile = program;
+
+    // If the file doesn't end with ".cpp", append it
+    if (sourceFile.size() < 4 || sourceFile.substr(sourceFile.size() - 4) != ".cpp") {
+        sourceFile += ".cpp";
+    }
+    else {
+        // Remove the .cpp extension for the binary file name
+        program = program.substr(0, program.size() - 4);
+    }
+
     std::string binaryFile = program + ".exe";  // Change the output to .exe for Windows
 
     // Check if the binary exists and if the source is newer than the binary
-    if (!std::filesystem::exists(binaryFile) || std::filesystem::last_write_time(sourceFile) > std::filesystem::last_write_time(binaryFile)) {
+    if (!std::filesystem::exists(binaryFile) or std::filesystem::last_write_time(sourceFile) > std::filesystem::last_write_time(binaryFile)) {
         // Construct the compile command
         std::string compileCommand = "clang++ -o " + binaryFile + " -std=c++20 " + sourceFile;
 
