@@ -96,7 +96,7 @@
 		"body": [
 			"class $1 {",
 			"public:",
-			"\t$1",
+			"\t",
 			"};"
 		],
 		"description": "class"
