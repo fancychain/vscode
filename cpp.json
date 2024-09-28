@@ -26,7 +26,7 @@
 		"prefix": "for-loop",
 		"body": [
 			"for (int ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}++) {",
-			"\t",
+			"\t$0",
 			"}"
 		],
 		"description": "For loop"
@@ -34,8 +34,8 @@
 	"reversed for loop": {
 		"prefix": "for-loop-reversed",
 		"body": [
-			"for (int i = ${1:length} - 1; i >= 0; i--) {",
-			"\t${2:/* code */}",
+			"for (int ${1:i} = ${2:length} - 1; ${1:i} >= 0; ${1:i}--) {",
+			"\t$0",
 			"}"
 		],
 		"description": "Reversed for loop"
@@ -43,35 +43,35 @@
 	"std::cout": {
 		"prefix": "cout",
 		"body": [
-			"std::cout << $1;"
+			"std::cout << $0;"
 		],
 		"description": "std::cout"
 	},
 	"std::cout + '\\n'": {
 		"prefix": "cout-nl",
 		"body": [
-			"std::cout << $1 << '\\n';"
+			"std::cout << $0 << '\\n';"
 		],
 		"description": "std::cout with new line"
 	},
-	"std::cout string": {
-		"prefix": "cout-str",
-		"body": [
-			"std::cout << \"$1\";"
-		],
-		"description": "std::cout string"
-	},
+	// "std::cout string": {
+	// 	"prefix": "cout-str",
+	// 	"body": [
+	// 		"std::cout << \"$0\";"
+	// 	],
+	// 	"description": "std::cout string"
+	// },
 	"std::cout string and new line": {
 		"prefix": "cout-str-nl",
 		"body": [
-			"std::cout << \"$1\" << '\\n';"
+			"std::cout << \"$0\" << '\\n';"
 		],
 		"description": "std::cout string and new line"
 	},
 	"std::cin": {
 		"prefix": "cin",
 		"body": [
-			"std::cin >> ${1:/* variable */};"
+			"std::cin >> $1;"
 		],
 		"description": "std::cin"
 	},
@@ -86,7 +86,7 @@
 		"prefix": "case",
 		"body": [
 			"case $1:",
-			"\t$2",
+			"\t$0",
 			"\tbreak;"
 		],
 		"description": "switch case with break"
@@ -95,8 +95,8 @@
 		"prefix": "class",
 		"body": [
 			"class $1 {",
+			"private:$0",
 			"public:",
-			"\t",
 			"};"
 		],
 		"description": "class"
@@ -105,7 +105,7 @@
 		"prefix": "main-function",
 		"body": [
 			"int main() {",
-			"\t$1",
+			"\t$0\n",
 			"\treturn 0;",
 			"}"
 		],
@@ -115,7 +115,7 @@
 		"prefix": "main-function-args",
 		"body": [
 			"int main(int argc, const char* argv[]) {",
-			"\t$1",
+			"\t$0\n",
 			"\treturn 0;",
 			"}"
 		],
@@ -124,14 +124,14 @@
 	"getline": {
 		"prefix": "getline",
 		"body": [
-			"std::getline(std::cin, ${1:/* string */});"
+			"std::getline(std::cin, $1);"
 		],
 		"description": "getline function"
 	},
 	"getline without whitespaces": {
 		"prefix": "getline-ws",
 		"body": [
-			"std::getline(std::cin >> std::ws, ${1:/* string */});"
+			"std::getline(std::cin >> std::ws, $1);"
 		],
 		"description": "getline function without whitespaces at the beginning"
 	},
@@ -152,7 +152,7 @@
 	"vector": {
 		"prefix": "vector",
 		"body": [
-			"std::vector<${1:int}> $2"
+			"std::vector<${1:int}> $0"
 		],
 		"description": "std::vector"
 	},
