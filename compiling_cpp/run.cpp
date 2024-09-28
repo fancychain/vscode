@@ -8,7 +8,7 @@ void run(std::string& program, int argc, char* argv[]) {
     std::string sourceFile = program;
 
     // If the file doesn't end with ".cpp", append it
-    if (sourceFile.size() < 4 || sourceFile.substr(sourceFile.size() - 4) != ".cpp") {
+    if (sourceFile.size() < 4 or sourceFile.substr(sourceFile.size() - 4) != ".cpp") {
         sourceFile += ".cpp";
     }
     else {
