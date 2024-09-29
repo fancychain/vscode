@@ -12,7 +12,18 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+shift+/",
-        "command": "editor.action.blockComment",
-        "when": "editorTextFocus"
+        "key": "ctrl+shift+9",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "name": "wrap in function"
+        },
+        "when": "editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+0",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "name": "remove function"
+        },
+        "when": "editorHasSelection"
     }
