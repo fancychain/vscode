@@ -41,14 +41,14 @@
 		],
 		"description": "reversed for loop"
 	},
-	"do loop": {
-		"prefix": "do-loop",
+	"while loop": {
+		"prefix": "while-loop",
 		"body": [
 			"while ($1) {",
 			"\t${0:$TM_SELECTED_TEXT}",
 			"}"
 		],
-		"description": "do loop"
+		"description": "while loop"
 	},
 	"do while loop": {
 		"prefix": "do-while-loop",
@@ -82,10 +82,22 @@
 		"prefix": "else",
 		"body": [
 			"else ($1) {",
-			"\t${0:$TM_SELECTED_TEXT}",
+			"\t${TM_SELECTED_TEXT:$2}",
 			"}"
 		],
 		"description": "else statement"
+	},
+
+	"try catch": {
+		"prefix": "try-catch",
+		"body": [
+			"try {",
+			"\t${1:$TM_SELECTED_TEXT}",
+			"}\ncatch (const std::${2:invalid_argument}& e) {",
+			"\t$0",
+			"}"
+		],
+		"description": "try catch"
 	},
 
 	"std::cout + '\\n'": {
@@ -164,7 +176,7 @@
 	"include a library": {
 		"prefix": ["include", "#include"],
 		"body": [
-			"#include <${1|iostream,vector,algorithm,regex,cmath,fstream,filesystem,cstdlib,cstring|}>"
+			"#include <${1|iostream,vector,array,algorithm,regex,cmath,fstream,filesystem,cstdlib,cstring|}>"
 		],
 		"description": "include a library"
 	},
@@ -182,10 +194,17 @@
 		],
 		"description": "std::string"
 	},
+	"array": {
+		"prefix": "array",
+		"body": [
+			"std::array $1 = {${0:1}};"
+		],
+		"description": "std::array"
+	},
 	"vector": {
 		"prefix": "vector",
 		"body": [
-			"std::vector<${1:${TM_SELECTED_TEXT:int}}> $0"
+			"std::vector<${1:${TM_SELECTED_TEXT:int}}> $2 = {$0};"
 		],
 		"description": "std::vector"
 	},
@@ -223,10 +242,25 @@
 			"this->${1:$CLIPBOARD} = ${1:$CLIPBOARD};"
 		],
 		"description": "set variable in constructor"
+	},
+
+	// "template": {
+	// 	"prefix": "template",
+	// 	"body": [
+	// 		"template <typename ${1:T}>"
+	// 	],
+	// 	"description": "template"
+	// },
+	"template": {
+		"prefix": "template",
+		"body": [
+			"template <typename T>${TM_SELECTED_TEXT/\\b([\\w:<>]+)(?= +\\w+[,\\)])/T/g}"
+		],
+		"description": "template"
 	}
 	// "wrap in function": {
 	// 	"body": [
-	// 		"$${TM_SELECTED_TEXT}"
+	// 		"${TM_SELECTED_TEXT}"
 	// 	],
 	// 	"description": "wrap text in function"
 	// }
