@@ -81,8 +81,8 @@
 	"else statement": {
 		"prefix": "else",
 		"body": [
-			"else ($1) {",
-			"\t${TM_SELECTED_TEXT:$2}",
+			"else {",
+			"\t${0:$TM_SELECTED_TEXT}",
 			"}"
 		],
 		"description": "else statement"
@@ -229,13 +229,13 @@
 		],
 		"description": "convert number to string"
 	},
-	"get random number": {
-		"prefix": "random",
-		"body": [
-			"${0:$RANDOM}"
-		],
-		"description": "get 6-digit random number"
-	},
+	// "get random number": {
+	// 	"prefix": "random",
+	// 	"body": [
+	// 		"${0:$RANDOM}"
+	// 	],
+	// 	"description": "get 6-digit random number"
+	// },
 	"set variable in constructor": {
 		"prefix": "this-constructor",
 		"body": [
@@ -244,44 +244,18 @@
 		"description": "set variable in constructor"
 	},
 
-	// "template": {
-	// 	"prefix": "template",
-	// 	"body": [
-	// 		"template <typename ${1:T}>"
-	// 	],
-	// 	"description": "template"
-	// },
 	"template": {
 		"prefix": "template",
 		"body": [
 			"template <typename T>${TM_SELECTED_TEXT/\\b([\\w:<>]+)(?= +\\w+[,\\)])/T/g}"
 		],
 		"description": "template"
+	},
+	"wrap in raw string": {
+		"prefix": "raw-string",
+		"body": [
+			"R\"(${0:$TM_SELECTED_TEXT})\""
+		],
+		"description": "wrap in raw string"
 	}
-	// "wrap in function": {
-	// 	"body": [
-	// 		"${TM_SELECTED_TEXT}"
-	// 	],
-	// 	"description": "wrap text in function"
-	// }
-	// "remove function": {
-	// 	"body": [
-	// 		"${TM_SELECTED_TEXT/\\w+\\((.*)\\)/$1/}"
-	// 	],
-	// 	"description": "remove function"
-	// }
-	// "remove arguments": {
-	// 	"prefix": "remargs",
-	// 	"body": [
-	// 		"${TM_SELECTED_TEXT/(\\w+)\\(.*\\)/$1()/}"
-	// 	],
-	// 	"description": "remove arguments"
-	// }
-	// "get today's date": {
-	// 	"prefix": "today",
-	// 	"body": [
-	// 		"${0:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}"
-	// 	],
-	// 	"description": "get today's date"
-	// }
 }
