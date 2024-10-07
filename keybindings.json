@@ -26,4 +26,35 @@
             "name": "remove function"
         },
         "when": "editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+9",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "name": "wrap in function"
+        },
+        "when": "editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+0",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "name": "remove function"
+        },
+        "when": "editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+5",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "clang++ ${fileBasename} -o ${fileBasenameNoExtension} -std=c++20"
+        }
+    },
+    {
+        "key": "ctrl+shift+alt+v",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "name": "backslash to slash"
+        },
+        "when": "editorTextFocus"
     }
