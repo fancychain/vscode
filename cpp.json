@@ -22,7 +22,6 @@
 		],
 		"description": "std::"
 	},
-
 	"for loop": {
 		"prefix": "for-loop",
 		"body": [
@@ -59,7 +58,6 @@
 		],
 		"description": "do while loop"
 	},
-
 	"if statement": {
 		"prefix": "if",
 		"body": [
@@ -87,7 +85,6 @@
 		],
 		"description": "else statement"
 	},
-
 	"try catch": {
 		"prefix": "try-catch",
 		"body": [
@@ -99,7 +96,6 @@
 		],
 		"description": "try catch"
 	},
-
 	"std::cout + '\\n'": {
 		"prefix": "cout",
 		"body": [
@@ -174,14 +170,20 @@
 		"description": "getline function without whitespaces at the beginning"
 	},
 	"include a library": {
-		"prefix": ["include", "#include"],
+		"prefix": [
+			"include",
+			"#include"
+		],
 		"body": [
 			"#include <${1|iostream,vector,array,algorithm,regex,cmath,fstream,filesystem,cstdlib,cstring|}>"
 		],
 		"description": "include a library"
 	},
 	"include a header": {
-		"prefix": ["include-header", "#include-header"],
+		"prefix": [
+			"include-header",
+			"#include-header"
+		],
 		"body": [
 			"#include \"$1\""
 		],
@@ -243,7 +245,6 @@
 		],
 		"description": "set variable in constructor"
 	},
-
 	"template": {
 		"prefix": "template",
 		"body": [
@@ -257,5 +258,37 @@
 			"R\"(${0:$TM_SELECTED_TEXT})\""
 		],
 		"description": "wrap in raw string"
-	}
+	},
+	"getter": {
+		"prefix": "getter",
+		"body": [
+			"${CLIPBOARD/\\s*(.*) \\w+.*/$1/} get_${CLIPBOARD/.* (\\w+).*/$1/}() {",
+			"\treturn ${CLIPBOARD/.* (\\w+).*/$1/};",
+			"}"
+		],
+		"description": "getter"
+	},
+	"one-line-getter": {
+		"prefix": "ol-getter",
+		"body": [
+			"${CLIPBOARD/\\s*(.*) \\w+.*/$1/} get_${CLIPBOARD/.* (\\w+).*/$1/}() {return ${CLIPBOARD/.* (\\w+).*/$1/};}"
+		],
+		"description": "getter in one line"
+	},
+	"setter": {
+		"prefix": "setter",
+		"body": [
+			"void set_${CLIPBOARD/.* (\\w+).*/$1/}(${CLIPBOARD/\\s*(.*) \\w+.*/$1/} ${CLIPBOARD/.* (\\w+).*/$1/}) {",
+			"\tthis->${CLIPBOARD/.* (\\w+).*/$1/} = ${CLIPBOARD/.* (\\w+).*/$1/};",
+			"}"
+		],
+		"description": "setter"
+	},
+	"one-line-setter": {
+		"prefix": "ol-setter",
+		"body": [
+			"void set_${CLIPBOARD/.* (\\w+).*/$1/}(${CLIPBOARD/\\s*(.*) \\w+.*/$1/} ${CLIPBOARD/.* (\\w+).*/$1/}) {this->${CLIPBOARD/.* (\\w+).*/$1/} = ${CLIPBOARD/.* (\\w+).*/$1/};}"
+		],
+		"description": "setter in one line"
+	},
 }
